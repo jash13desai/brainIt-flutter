@@ -67,7 +67,7 @@ class PostCard extends ConsumerWidget {
             decoration: BoxDecoration(
               color: currentTheme.drawerTheme.backgroundColor,
             ),
-            padding: const EdgeInsets.symmetric(vertical: 10),
+            padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -105,14 +105,16 @@ class PostCard extends ConsumerWidget {
                     children: [
                       Container(
                         padding: const EdgeInsets.symmetric(
-                          vertical: 4,
-                          horizontal: 16,
-                        ).copyWith(right: 0),
+                          vertical: 5,
+                          horizontal: 15,
+                        ).copyWith(right: 5),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Row(
                                   children: [
@@ -130,6 +132,8 @@ class PostCard extends ConsumerWidget {
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
                                             'r/${post.communityName}',
@@ -138,6 +142,7 @@ class PostCard extends ConsumerWidget {
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
+                                          const SizedBox(height: 2),
                                           GestureDetector(
                                             onTap: () =>
                                                 navigateToUser(context),
@@ -190,10 +195,11 @@ class PostCard extends ConsumerWidget {
                                 ),
                               ),
                             ),
+                            const SizedBox(height: 5),
                             if (isTypeImage)
                               SizedBox(
                                 height:
-                                    MediaQuery.of(context).size.height * 0.35,
+                                    MediaQuery.of(context).size.height * 0.4,
                                 width: double.infinity,
                                 child: Image.network(
                                   post.link!,
@@ -222,6 +228,7 @@ class PostCard extends ConsumerWidget {
                                   ),
                                 ),
                               ),
+                            const SizedBox(height: 3),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [

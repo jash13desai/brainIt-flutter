@@ -72,16 +72,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ? null
           : CupertinoTabBar(
               activeColor: currentTheme.iconTheme.color,
-              backgroundColor: currentTheme.colorScheme.background,
               items: const [
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label: '',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.add),
-                  label: '',
-                ),
+                BottomNavigationBarItem(icon: Icon(Icons.home)),
+                BottomNavigationBarItem(icon: Icon(Icons.add)),
               ],
               onTap: onPageChanged,
               currentIndex: _page,

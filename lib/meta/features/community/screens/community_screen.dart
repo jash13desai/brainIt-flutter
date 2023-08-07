@@ -1,13 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:reddit/meta/features/authentication/controller/auth_controller.dart';
-import 'package:reddit/meta/features/community/controller/community_controller.dart';
-import 'package:reddit/meta/models/community_model.dart';
-import 'package:reddit/meta/shared/error_text.dart';
+import 'package:routemaster/routemaster.dart';
 import 'package:reddit/meta/shared/loader.dart';
 import 'package:reddit/meta/shared/post_card.dart';
-import 'package:routemaster/routemaster.dart';
+import 'package:reddit/meta/shared/error_text.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:reddit/meta/models/community_model.dart';
+import 'package:reddit/meta/features/authentication/controller/auth_controller.dart';
+import 'package:reddit/meta/features/community/controller/community_controller.dart';
 
 class CommunityScreen extends ConsumerWidget {
   final String name;
@@ -37,7 +37,7 @@ class CommunityScreen extends ConsumerWidget {
                 headerSliverBuilder: (context, innerBoxIsScrolled) {
                   return [
                     SliverAppBar(
-                      expandedHeight: 150,
+                      expandedHeight: 180,
                       floating: true,
                       snap: true,
                       flexibleSpace: Stack(
@@ -52,7 +52,7 @@ class CommunityScreen extends ConsumerWidget {
                       ),
                     ),
                     SliverPadding(
-                      padding: const EdgeInsets.all(18),
+                      padding: const EdgeInsets.all(20),
                       sliver: SliverList(
                         delegate: SliverChildListDelegate(
                           [
@@ -63,7 +63,7 @@ class CommunityScreen extends ConsumerWidget {
                                 radius: 35,
                               ),
                             ),
-                            const SizedBox(height: 10),
+                            const SizedBox(height: 5),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -71,7 +71,7 @@ class CommunityScreen extends ConsumerWidget {
                                   'r/${community.name}',
                                   style: const TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 19,
+                                    fontSize: 20,
                                   ),
                                 ),
                                 if (!isGuest)
@@ -89,7 +89,7 @@ class CommunityScreen extends ConsumerWidget {
                                               vertical: 0.6,
                                             ),
                                             padding: const EdgeInsets.symmetric(
-                                              horizontal: 25,
+                                              horizontal: 20,
                                             ),
                                           ),
                                           child: const Text(
@@ -129,7 +129,7 @@ class CommunityScreen extends ConsumerWidget {
                               ],
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 10),
+                              padding: const EdgeInsets.only(top: 5),
                               child:
                                   Text('${community.members.length}  members'),
                             )
@@ -141,12 +141,16 @@ class CommunityScreen extends ConsumerWidget {
                 },
                 body: ref.watch(getCommunityPostsProvider(community.name)).when(
                       data: (data) {
-                        return ListView.builder(
-                          itemCount: data.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            final post = data[index];
-                            return PostCard(post: post);
-                          },
+                        return MediaQuery.removePadding(
+                          removeTop: true,
+                          context: context,
+                          child: ListView.builder(
+                            itemCount: data.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              final post = data[index];
+                              return PostCard(post: post);
+                            },
+                          ),
                         );
                       },
                       error: (error, stackTrace) {

@@ -41,7 +41,7 @@ class _MyAppState extends ConsumerState<MyApp> {
         .getUserData(user.uid)
         .first;
     ref.read(userProvider.notifier).update((state) => userModel);
-    setState(() {});
+    // setState(() {});
   }
 
   @override
@@ -49,10 +49,10 @@ class _MyAppState extends ConsumerState<MyApp> {
     return ref.watch(authStateChangeProvider).when(
           data: (data) => MaterialApp.router(
             debugShowCheckedModeBanner: false,
-            title: 'Flutter Demo',
+            title: 'BrainIt App',
             theme: ref.watch(themeNotifierProvider),
             // home: const LoginScreen(),
-            routerDelegate: RoutemasterDelegate(routesBuilder: (context) {
+            routerDelegate: RoutemasterDelegate(routesBuilder: (ctx) {
               if (data != null) {
                 getData(ref, data);
                 if (userModel != null) return loggedInRoute;
