@@ -3,7 +3,7 @@
   <img align="center" alt="PicasoPic" width="50px" src="https://raw.githubusercontent.com/jash-desai/jash-desai/main/assets/reddit.svg" />
 </h1>
 
-# A Simple Reddit-Like Community-based App with mulitple features !
+# A Simple Reddit-Like Community-based App with multiple features !
 
 ## ✨ Features
 * Google Sign In for everyone. You need to login only once.
